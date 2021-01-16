@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Promises</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Promises</title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+  <body>
+    <script>
+      function makePizza(toppings) {
+        return (pizzaPromise = new Promise(function (resolve, reject) {
+          // wait 1s for the pizza to cook
+          setTimeout(function () {
+            // when you are ready, you can resolve this promise
+            resolve(
+              `here is your pizza with the toppings ${toppings.join(' ')}`
+            );
+          }, 1000);
+          // if something went wrong, we can reject this promise
+        }));
+        return pizzaPromise;
+      }
 
-<body>
-  <script>
+      const pepperoniPizza = makePizza(['pepperoni']);
+      const canadianPizza = makePizza(['pepperoni', 'mushrooms', 'onions']);
 
-  </script>
-</body>
-
+      pepperoniPizza.then(function (pizza) {
+        console.log('aah got it');
+        console.log(pizza);
+      });
+    </script>
+  </body>
 </html>
